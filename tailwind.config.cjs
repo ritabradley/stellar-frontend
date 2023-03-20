@@ -5,7 +5,7 @@ module.exports = {
         extend: {
             backgroundImage: {
                 'main-gradient':
-                    'linear-gradient(to right bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1)',
+                    'linear-gradient(to right bottom, #cb6bd1, #c569d4, #be67d7, #b666db, #ae65de, #a56ae3, #9b6fe8, #9173ed, #847df2, #7785f7, #6b8df9, #5f95fb);',
             },
             fontFamily: {
                 mono: ['"Space Mono"', 'monospace'],

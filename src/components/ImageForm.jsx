@@ -1,4 +1,29 @@
+import { useState } from 'react';
+
 const ImageForm = () => {
+    const [byteString, setByteString] = useState(null);
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+
+        if (file) {
+            // Read the file.
+            const reader = new FileReader();
+
+            // When the file is read, convert the result to a base64 string.
+            reader.onload = (loadEvent) => {
+                const result = loadEvent.target.result;
+                const byteString = window.btoa(result);
+                setByteString(byteString);
+            };
+
+            // Read the file as binary data.
+            reader.readAsBinaryString(file);
+        } else {
+            setByteString(null);
+        }
+    };
+
     return (
         <>
             <div>
@@ -30,7 +55,8 @@ const ImageForm = () => {
                         </p>
                         <p className='text-xs text-violet-500'>PNG or JPG only (MAX. 800x400px)</p>
                     </div>
-                    <input type='file' className='hidden' id='file-dropzone' />
+                    <input onChange={handleFileChange} type='file' className='hidden' id='file-dropzone' />
+                    {byteString && <textarea readOnly value={byteString} />}
                 </label>
             </div>
         </>

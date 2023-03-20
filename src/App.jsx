@@ -8,8 +8,10 @@ const App = () => {
         <div>
             <Navigation />
             <Logo />
-            <Rank />
-            <ImageForm />
+            <div className='grid place-content-center text-center font-mono'>
+                <Rank />
+                <ImageForm />
+            </div>
         </div>
     );
 };

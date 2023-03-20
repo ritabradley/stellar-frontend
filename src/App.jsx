@@ -6,11 +6,11 @@ import ParticlesBg from 'particles-bg';
 
 const App = () => {
     return (
-        <div>
+        <div className='font-mono'>
             <ParticlesBg color='#F5F3FF' num={250} type='cobweb' bg={true} />
             <Navigation />
             <Logo />
-            <div className='grid place-content-center text-center font-mono'>
+            <div className='grid place-content-center text-center'>
                 <Rank />
                 <ImageForm />
             </div>

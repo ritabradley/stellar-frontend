@@ -1,10 +1,11 @@
 import Navigation from './components/Navigation';
+import Logo from './components/Logo';
 
 const App = () => {
     return (
         <div>
-            <h1>Stellar</h1>
             <Navigation />
+            <Logo />
         </div>
     );
 };

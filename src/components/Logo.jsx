@@ -1,9 +1,11 @@
 import Tilt from 'react-parallax-tilt';
 import star from '../assets/shooting-star.png';
+import star from '../assets/shooting-star.png';
 
 const Logo = () => {
     return (
         <Tilt
+            className='bg-main-gradient rounded shadow-md p-6'
             className='bg-main-gradient rounded shadow-md p-6'
             perspective={500}
             glareEnable={true}
@@ -12,7 +14,7 @@ const Logo = () => {
             style={{ height: 150, width: 150 }}
         >
             <div className='inner-element '>
-                <img src={star} />
+                <img src={star} alt='shooting star icon' />
             </div>
         </Tilt>
     );

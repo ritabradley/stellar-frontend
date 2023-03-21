@@ -10,7 +10,7 @@ const App = () => {
             <ParticlesBg color='#F5F3FF' num={250} type='cobweb' bg={true} />
             <Navigation />
             <Logo />
-            <div className='grid place-content-center text-center'>
+            <div className='grid place-content-center text-center w-full max-w-4xl mt-6 mx-auto'>
                 <Rank />
                 <ImageForm />
             </div>

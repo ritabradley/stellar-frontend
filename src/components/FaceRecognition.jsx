@@ -3,11 +3,13 @@ const FaceRecognition = ({ byteString, box }) => {
 
     return (
         <div className='flex justify-center'>
-            {byteString ? (
-                <img src={imageSrc} alt='Uploaded' style={{ maxWidth: '800px', height: '400px' }} />
-            ) : (
-                <p>No image to display.</p>
-            )}
+            <div className='mt-2'>
+                {byteString ? (
+                    <img src={imageSrc} alt='Uploaded' style={{ maxWidth: '100%', height: 'auto' }} />
+                ) : (
+                    <p>No image to display.</p>
+                )}
+            </div>
         </div>
     );
 };

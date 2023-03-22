@@ -1,26 +1,29 @@
+// ImageForm.jsx
 import { useState } from 'react';
+import axios from 'axios';
 
-const ImageForm = () => {
-    const [byteString, setByteString] = useState(null);
+const ImageForm = ({ setImageUrl, setFaceBoxes }) => {
+    const [imageData, setImageData] = useState('');
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
+    const handleFileInputChange = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
 
-        if (file) {
-            // Read the file.
-            const reader = new FileReader();
+        reader.onloadend = () => {
+            setImageData(reader.result);
+        };
 
-            // When the file is read, convert the result to a base64 string.
-            reader.onload = (loadEvent) => {
-                const result = loadEvent.target.result;
-                const byteString = window.btoa(result);
-                setByteString(byteString);
-            };
+        reader.readAsDataURL(file);
+    };
 
-            // Read the file as binary data.
-            reader.readAsBinaryString(file);
-        } else {
-            setByteString(null);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.post('/process-image', { imageData });
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error processing image:', error);
         }
     };
 
@@ -53,10 +56,12 @@ const ImageForm = () => {
                         <p className='mb-2 text-sm text-violet-500'>
                             <span className='font-semibold'>Click to upload</span> or drag and drop
                         </p>
-                        <p className='text-xs text-violet-500'>PNG or JPG only (MAX. 800x400px)</p>
+                        <p className='text-xs text-violet-500'>JPG or JPEG only (MAX. 800x400px)</p>
                     </div>
-                    <input onChange={handleFileChange} type='file' className='hidden' id='file-dropzone' />
-                    {byteString && <textarea readOnly value={byteString} />}
+                    <input type='file' accept='image/jpeg, image/jpg' className='hidden' id='file-dropzone' onChange={handleFileInputChange} />
+                    <button type='submit' disabled={!imageData} className='px-4 py-2 mt-4 bg-violet-500 text-white rounded-md disabled:bg-gray-400'>
+                        Detect Faces
+                    </button>
                 </label>
             </div>
         </>

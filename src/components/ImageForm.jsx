@@ -1,32 +1,4 @@
-// ImageForm.jsx
-import { useState } from 'react';
-import axios from 'axios';
-
-const ImageForm = ({ setImageUrl, setFaceBoxes }) => {
-    const [imageData, setImageData] = useState('');
-
-    const handleFileInputChange = (e) => {
-        const file = e.target.files[0];
-        const reader = new FileReader();
-
-        reader.onloadend = () => {
-            setImageData(reader.result);
-        };
-
-        reader.readAsDataURL(file);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        try {
-            const response = await axios.post('/process-image', { imageData });
-            console.log(response.data);
-        } catch (error) {
-            console.error('Error processing image:', error);
-        }
-    };
-
+const ImageForm = () => {
     return (
         <>
             <div>
@@ -56,12 +28,14 @@ const ImageForm = ({ setImageUrl, setFaceBoxes }) => {
                         <p className='mb-2 text-sm text-violet-500'>
                             <span className='font-semibold'>Click to upload</span> or drag and drop
                         </p>
-                        <p className='text-xs text-violet-500'>JPG or JPEG only (MAX. 800x400px)</p>
+                        <p className='text-xs text-violet-500'>JPG only (MAX. 800x400px)</p>
                     </div>
-                    <input type='file' accept='image/jpeg, image/jpg' className='hidden' id='file-dropzone' onChange={handleFileInputChange} />
-                    <button type='submit' disabled={!imageData} className='px-4 py-2 mt-4 bg-violet-500 text-white rounded-md disabled:bg-gray-400'>
-                        Detect Faces
-                    </button>
+                    <input
+                        type='file'
+                        accept='image/jpeg'
+                        className='hidden'
+                        id='file-dropzone'
+                    />
                 </label>
             </div>
         </>
